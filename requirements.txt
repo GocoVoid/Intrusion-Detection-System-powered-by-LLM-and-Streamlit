@@ -1,10 +1,8 @@
 streamlit
-pickle
 numpy
-google.generativeai
-numpy 
 pandas
 seaborn
-sklearn
+scikit-learn
 xgboost
 joblib
+google-generativeai
