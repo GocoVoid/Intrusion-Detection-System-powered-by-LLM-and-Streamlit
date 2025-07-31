@@ -37,7 +37,7 @@ if st.button("Verify"):
         detection = "Intrusion has been detected !!"
 
     model = genai.GenerativeModel('gemini-2.0-flash')
-    GOOGLE_API_KEY = "AIzaSyCjgmVPp27fJboCZ1eNJLnxn8HzsxFt1P4"
+    GOOGLE_API_KEY = "Your_API_Key"
     genai.configure(api_key=GOOGLE_API_KEY)
 
     def prompt(input):
