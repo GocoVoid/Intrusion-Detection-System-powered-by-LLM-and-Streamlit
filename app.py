@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 
-with open("model/Intrusion_Detector_Model.pkl", "rb") as f:
+with open("Intrusion_Detector_Model.pkl", "rb") as f:
     model = pickle.load(f)
 
 st.set_page_config(page_title="Intrusion Detector", layout="centered")
