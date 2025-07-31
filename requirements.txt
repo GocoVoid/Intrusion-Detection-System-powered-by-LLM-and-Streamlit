@@ -1,0 +1,10 @@
+streamlit
+pickle
+numpy
+google.generativeai
+numpy 
+pandas
+seaborn
+sklearn
+xgboost
+joblib
