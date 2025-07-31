@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 import google.generativeai as genai
+import os
 
 with open("Intrusion_Detector_Model.pkl", "rb") as f:
     model = pickle.load(f)
@@ -37,7 +38,7 @@ if st.button("Verify"):
         detection = "Intrusion has been detected !!"
 
     model = genai.GenerativeModel('gemini-2.0-flash')
-    API_KEY = st.secrets["gemini"]["api_key"]
+    API_KEY = os.getenv("API_KEY")
     genai.configure(api_key=API_KEY)
 
     def prompt(input):
