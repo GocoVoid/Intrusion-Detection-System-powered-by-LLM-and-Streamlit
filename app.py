@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 import google.generativeai as genai
+from openai import OpenAI
 import os
 
 with open("Intrusion_Detector_Model.pkl", "rb") as f:
@@ -37,13 +38,23 @@ if st.button("Verify"):
     else:
         detection = "Intrusion has been detected !!"
 
-    model = genai.GenerativeModel('gemini-2.0-flash')
-    API = st.secrets["API_KEY"]
-    genai.configure(api_key=API)
-
-    def prompt(input):
-        response = model.generate_content(input)
-        return response.text
+    @st.cache_resource
+    def get_openrouter_client():
+        return OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=st.secrets["API_KEY"],
+        )
+    
+    client = get_openrouter_client()
+    
+    def prompt(input_text, model="google/gemma-4-31b-it:free"):
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "user", "content": input_text}
+            ]
+        )
+        return response.choices[0].message.content
 
 
     inpt = f"""
